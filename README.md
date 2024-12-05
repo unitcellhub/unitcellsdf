@@ -1,6 +1,6 @@
 # sdf
 
->[!NOTE]
+> [!NOTE]
 > This is a forked version on the sdf library.
 > Due to UnitcellEngine's dependency on this library, and the lack of a PyPi library, this fork is a means to close out the packaging for UnitcellEngine. 
 
@@ -58,15 +58,8 @@ following the directions below.
 
 ## Installation
 
-Use the commands below to clone the repository and install the `sdf` library
-in a Python virtualenv.
-
-```bash
-git clone https://github.com/fogleman/sdf.git
-cd sdf
-virtualenv env
-. env/bin/activate
-pip install -e .
+```
+pip install unitcellsdf
 ```
 
 Confirm that it works:
