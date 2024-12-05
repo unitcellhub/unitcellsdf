@@ -29,9 +29,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # This repository uses git-lfs, so we need to enable support.
-          # Otherwise, the lfs files won't be properly pulled.
-          lfs: true
           fetch-depth: 0  # fetch the entire repo history, which is required for proper semver bumping
       
       # - name: Pull from git lfs
