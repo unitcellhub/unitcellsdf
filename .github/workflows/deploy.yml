@@ -1,0 +1,82 @@
+
+
+name: Build and deploy to PyPi
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  ASSET_FILNAME: ${{ github.ref_name }} 
+
+jobs:
+  build:
+    name: Build wheels
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to enable write permissions
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # This repository uses git-lfs, so we need to enable support.
+          # Otherwise, the lfs files won't be properly pulled.
+          lfs: true
+          fetch-depth: 0  # fetch the entire repo history, which is required for proper semver bumping
+      
+      # - name: Pull from git lfs
+      #   run: git lfs pull
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.4.27"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Bump the version number to dev if a tag isn't specified
+        # This help differentiate development builds on Test PyPi
+        if: ${{ ! startsWith(github.ref, 'refs/tags/v') }}
+        run: |
+          # We need to first check in any files that are shown as modified,
+          # which can happen due to line ending differences between operating
+          # systems.
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --all --allow-empty --message "Dummy checking"
+          uv tool run bump-my-version bump patch
+          uv tool run bump-my-version show-bump
+
+      - name: Build source and wheels
+        run: uv build
+
+      - name: Create tagged release 
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          prerelease: false
+
+      - name: Publish to PyPi (production)
+        if: startsWith(github.ref, 'refs/tags/v') 
+        run: uv publish --token ${{ secrets.PYPI_TOKEN }}
+
+      - name: Publish to TestPyPi (development)
+        if: github.event_name == 'push' && ! startsWith(github.ref, 'refs/tags/v')
+        run: uv publish --publish-url https://test.pypi.org/legacy/ --token ${{ secrets.TESTPYPI_TOKEN }}
+
+
