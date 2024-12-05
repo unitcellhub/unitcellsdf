@@ -1,5 +1,9 @@
 # sdf
 
+>[!NOTE]
+> This is a forked version on the sdf library.
+> Due to UnitcellEngine's dependency on this library, and the lack of a PyPi library, this fork is a means to close out the packaging for UnitcellEngine. 
+
 Generate 3D meshes based on SDFs (signed distance functions) with a
 dirt simple Python API.
 
