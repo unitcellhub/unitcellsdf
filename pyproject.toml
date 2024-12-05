@@ -2,7 +2,7 @@
 [project]
 name = "unitcellsdf"
 description = "Generate 3D meshes from signed distance functions."
-version = "0.0.2-dev4"
+version = "0.0.2"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {file = "LICENSE.md"}
@@ -33,7 +33,7 @@ dependencies = [
 
 
 [tool.bumpversion]
-current_version = "0.0.2-dev4"
+current_version = "0.0.2"
 parse = """(?x)
     (?P<major>0|[1-9]\\d*)\\.
     (?P<minor>0|[1-9]\\d*)\\.

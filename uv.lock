@@ -822,7 +822,7 @@ wheels = [
 
 [[package]]
 name = "unitcellsdf"
-version = "0.0.2.dev4"
+version = "0.0.2"
 source = { editable = "." }
 dependencies = [
     { name = "matplotlib" },
