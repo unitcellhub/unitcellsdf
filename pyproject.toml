@@ -1,6 +1,6 @@
 
 [project]
-name = "sdf"
+name = "unitcellsdf"
 description = "Generate 3D meshes from signed distance functions."
 version = "0.0.1"
 readme = "README.md"
@@ -75,6 +75,9 @@ replace =  "version = \"{new_version}\""
 filename = "pyproject.toml"
 search = "version = \"{current_version}\""
 replace = "version = \"{new_version}\""
+
+[tool.hatch.build.targets.wheel]
+packages = ["sdf"]
 
 [dependency-groups]
 dev = [

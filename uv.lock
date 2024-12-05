@@ -768,37 +768,6 @@ wheels = [
 ]
 
 [[package]]
-name = "sdf"
-version = "0.0.1"
-source = { editable = "." }
-dependencies = [
-    { name = "matplotlib" },
-    { name = "meshio" },
-    { name = "numpy" },
-    { name = "pillow" },
-    { name = "scikit-image" },
-    { name = "scipy" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "ipython" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "matplotlib", specifier = ">=3.9.3" },
-    { name = "meshio", specifier = ">=5.3.5" },
-    { name = "numpy", specifier = "<2.0" },
-    { name = "pillow", specifier = ">=11.0.0" },
-    { name = "scikit-image", specifier = ">=0.24.0" },
-    { name = "scipy", specifier = ">=1.13.1" },
-]
-
-[package.metadata.requires-dev]
-dev = [{ name = "ipython", specifier = ">=8.18.1" }]
-
-[[package]]
 name = "six"
 version = "1.17.0"
 source = { registry = "https://pypi.org/simple" }
@@ -850,6 +819,37 @@ sdist = { url = "https://files.pythonhosted.org/packages/df/db/f35a00659bc03fec3
 wheels = [
     { url = "https://files.pythonhosted.org/packages/26/9f/ad63fc0248c5379346306f8668cda6e2e2e9c95e01216d2b8ffd9ff037d0/typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d", size = 37438 },
 ]
+
+[[package]]
+name = "unitcellsdf"
+version = "0.0.1"
+source = { editable = "." }
+dependencies = [
+    { name = "matplotlib" },
+    { name = "meshio" },
+    { name = "numpy" },
+    { name = "pillow" },
+    { name = "scikit-image" },
+    { name = "scipy" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "ipython" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "matplotlib", specifier = ">=3.9.3" },
+    { name = "meshio", specifier = ">=5.3.5" },
+    { name = "numpy", specifier = "<2.0" },
+    { name = "pillow", specifier = ">=11.0.0" },
+    { name = "scikit-image", specifier = ">=0.24.0" },
+    { name = "scipy", specifier = ">=1.13.1" },
+]
+
+[package.metadata.requires-dev]
+dev = [{ name = "ipython", specifier = ">=8.18.1" }]
 
 [[package]]
 name = "wcwidth"
